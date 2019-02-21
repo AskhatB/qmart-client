@@ -3,8 +3,9 @@ import { Switch, Route } from 'react-router-dom';
 import Auth from './containers/auth';
 import ProductScanner from './containers/productScanner';
 import Product from './containers/product';
+import axios from 'axios';
 import './App.css';
-
+axios.defaults.baseURL = 'http://127.0.0.1:8900';
 class App extends Component {
   render() {
     return (
@@ -12,7 +13,7 @@ class App extends Component {
         <Switch>
           <Route path="/auth" component={Auth} />
           <Route path="/product-scanner" component={ProductScanner} />
-          <Route path="/product" component={Product} />
+          <Route path="/product/:id" component={Product} />
         </Switch>
       </div>
     );

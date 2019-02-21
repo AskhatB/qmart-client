@@ -14,31 +14,45 @@ import Button from '../../components/Button';
 import CartIcon from '../../icons/cart';
 import SelectAmount from '../../components/SelectAmount';
 import ProductCardOne from '../../components/ProductCardOne';
+import axios from 'axios';
 import { products } from './data';
-
+//https://cors-anywhere.herokuapp.com/
 class Product extends React.Component {
   state = {
-    amount: 1
+    amount: 1,
+    product: null,
+    loading: true
   };
+
+  componentWillMount = () => {
+    axios.post('/product', { id: this.props.match.params.id }).then(res => {
+      this.setState({ product: res.data, loading: false });
+    });
+  };
+
   amountHandler = e => {
     const { value } = e.target;
     console.log(value);
     this.setState({ amount: value });
   };
+
   render() {
+    const { product, loading } = this.state;
+    if(loading) return <div>loading</div>
+    console.log('props', product);
     return (
       <Wrap>
         <Header title="Товар" />
         <Layout>
-          <BrandName>Foodmaster</BrandName>
-          <ProductName>Молоко Lactel 1л. 2,5%</ProductName>
+          <BrandName>{product.brand}</BrandName>
+          <ProductName>{product.name}</ProductName>
           <ProductImage>
             <img
-              src="https://img2.zakaz.ua/20180801.1533110205.ad72436478c_2018-08-01_Ucat/20180801.1533110205.SNCPSG10.obj.0.1.jpg.oe.jpg.pf.jpg.1350nowm.jpg.1350x.jpg"
+              src={JSON.parse(product.images)[0]}
               alt="product"
             />
           </ProductImage>
-          <Price>350 ₸</Price>
+          <Price>{product.price} ₸</Price>
           <BuyingBlock>
             <SelectAmount
               active={this.state.amount}
