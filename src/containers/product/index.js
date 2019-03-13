@@ -36,10 +36,32 @@ class Product extends React.Component {
     this.setState({ amount: value });
   };
 
+  addProductToCart = () => {
+    const id = parseInt(this.props.match.params.id, 10);
+    if (localStorage.getItem('_prodcutsInCart')) {
+      let cartUpdated = JSON.parse(localStorage.getItem('_prodcutsInCart'));
+      if (cartUpdated.filter(i => i.id === id).length > 0) {
+        const current = cartUpdated.filter(i => i.id === id)[0];
+        cartUpdated[cartUpdated.indexOf(current)] = {
+          id: id,
+          amount: current.amount + 1
+        };
+        localStorage.setItem('_prodcutsInCart', JSON.stringify(cartUpdated));
+      } else {
+        cartUpdated.push({ id: id, amount: 1 });
+        localStorage.setItem('_prodcutsInCart', JSON.stringify(cartUpdated));
+      }
+    } else {
+      localStorage.setItem(
+        '_prodcutsInCart',
+        `[{"id": ${id},"amount":1}]`
+      );
+    }
+  };
+
   render() {
     const { product, loading } = this.state;
-    if(loading) return <div>loading</div>
-    console.log('props', product);
+    if (loading) return <div />;
     return (
       <Wrap>
         <Header title="Товар" />
@@ -47,10 +69,7 @@ class Product extends React.Component {
           <BrandName>{product.brand}</BrandName>
           <ProductName>{product.name}</ProductName>
           <ProductImage>
-            <img
-              src={JSON.parse(product.images)[0]}
-              alt="product"
-            />
+            <img src={JSON.parse(product.images)[0]} alt="product" />
           </ProductImage>
           <Price>{product.price} ₸</Price>
           <BuyingBlock>
@@ -65,6 +84,7 @@ class Product extends React.Component {
               fontColor="#fff"
               width="max-content"
               height="35px"
+              onClick={this.addProductToCart}
             >
               <CartIcon />В корзину
             </Button>
