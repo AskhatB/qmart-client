@@ -1,9 +1,48 @@
 import React from 'react';
-import { Wrap } from './style';
-import BarcodeReader from 'react-barcode-reader';
+import { Wrap, ScannerWrap, Text } from './style';
+import Header from '../../components/Header';
+import Quagga from 'quagga';
 
 class ProductScanner extends React.Component {
-  handleScan = (data) => {
+  _onDetected(result) {
+    console.log('ss', result.codeResult.code);
+  }
+  componentDidMount() {
+    Quagga.init(
+      {
+        inputStream: {
+          type: 'LiveStream',
+          constraints: {
+            width: 320,
+            height: 320,
+            facingMode: 'environment' // or user
+          }
+        },
+        locator: {
+          patchSize: 'x-large',
+          halfSample: true
+        },
+        numOfWorkers: 0,
+        decoder: {
+          readers: ['ean_reader']
+        },
+        locate: true
+      },
+      function(err) {
+        if (err) {
+          return console.log(err);
+        }
+        Quagga.start();
+      }
+    );
+    Quagga.onDetected(this._onDetected);
+  }
+
+  // componentWillUnmount() {
+  //   Quagga.offDetected(this._onDetected);
+  // }
+
+  handleScan = data => {
     console.log('scan', data);
   };
 
@@ -12,10 +51,14 @@ class ProductScanner extends React.Component {
   };
 
   render() {
-    
     return (
       <Wrap>
-        <BarcodeReader onError={this.handleError} onScan={this.handleScan}/>
+        {/* <BarcodeReader onError={this.handleError} onScan={this.handleScan} /> */}
+        <Header title="Сканер" />
+        <ScannerWrap>
+          <div id="interactive" className="viewport" />
+        </ScannerWrap>
+        <Text>Подведите камеру к штрихкоду</Text>
       </Wrap>
     );
   }
