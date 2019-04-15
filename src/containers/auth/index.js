@@ -9,7 +9,7 @@ class Auth extends Component {
     return (
       <Wrap>
         <Logo>
-          <LogoIcon />
+          <LogoIcon width="100px" height="100px"/>
           <AppName>Qmart</AppName>
         </Logo>
         <Input width="100%" height="40px" type="text" placeholder="Логин" />

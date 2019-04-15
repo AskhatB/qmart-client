@@ -1,8 +1,14 @@
 import React from 'react';
 
-const Logo = () => {
+const Logo = ({ width, height }) => {
   return (
-    <svg id="Capa_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100px" height="100px">
+    <svg
+      id="Capa_1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      width={width}
+      height={height}
+    >
       <path
         d="M409.6-328.089c0-25.134-20.378-45.511-45.511-45.511H45.511C20.378-373.6,0-353.222,0-328.089 V-9.511C0,15.622,20.378,36,45.511,36h318.578C389.222,36,409.6,15.622,409.6-9.511V-328.089z"
         fill="#3b88c3"
