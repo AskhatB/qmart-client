@@ -4,8 +4,14 @@ import Header from '../../components/Header';
 import Quagga from 'quagga';
 
 class ProductScanner extends React.Component {
+  state = {
+    code: 0
+  }
   _onDetected(result) {
     console.log('ss', result.codeResult.code);
+    this.setState({
+      code: result.codeResult.code
+    })
   }
   componentDidMount() {
     Quagga.init(
@@ -59,6 +65,7 @@ class ProductScanner extends React.Component {
           <div id="interactive" className="viewport" />
         </ScannerWrap>
         <Text>Подведите камеру к штрихкоду</Text>
+        <div>{this.state.code}</div>
       </Wrap>
     );
   }
