@@ -7,7 +7,7 @@ import CheckIn from './containers/checkin';
 import Cart from './containers/cart';
 import axios from 'axios';
 import './App.css';
-axios.defaults.baseURL = 'http://142.93.136.152:8900';
+axios.defaults.baseURL = 'https://qmart-api.unie.kz/';
 class App extends Component {
   render() {
     return (
