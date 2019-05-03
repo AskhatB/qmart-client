@@ -8,7 +8,6 @@ class CheckIn extends React.Component {
   scanHandle = data => {
     console.log('ssss', data);
   };
-
   render() {
     return (
       <Wrap>
