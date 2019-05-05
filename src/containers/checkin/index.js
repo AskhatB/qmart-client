@@ -6,7 +6,12 @@ import QrWhiteIcon from '../../icons/qrWhite';
 
 class CheckIn extends React.Component {
   scanHandle = data => {
-    console.log('ssss', data);
+    const { history } = this.props;
+    if (data !== null) {
+      console.log('ssss', data);
+      localStorage.setItem('qmart::partner_id', data);
+      history.push('/product-scanner');
+    }
   };
   render() {
     return (
