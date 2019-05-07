@@ -33,7 +33,7 @@ class Camera extends React.Component {
         image: imageBase64
       });
       if (data.data !== 'Not recognized') {
-        this.props.history.push(`/product?id=${data.data}`);
+        this.props.history.push(`/product/${data.data}`);
       }
       console.log('BARCODE RESULT', data);
     } catch (error) {
