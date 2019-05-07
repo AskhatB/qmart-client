@@ -15,7 +15,7 @@ class ProductScanner extends React.Component {
         <Header title="Сканер" />
         <ScannerWrap>
           <RedLine />
-          <Camera width="100%" height="100%" />
+          <Camera width="100%" height="100%" history={this.props.history} />
         </ScannerWrap>
         <Text>Подведите камеру к штрихкоду</Text>
         <BarcodeIcon />

@@ -8,7 +8,7 @@ class Camera extends React.Component {
   };
 
   componentDidMount = () => {
-    const intervalCapture = setInterval(this.capture, 1000);
+    const intervalCapture = setInterval(this.getData, 500);
     this.setState({ intervalCapture: intervalCapture });
   };
 
@@ -25,13 +25,20 @@ class Camera extends React.Component {
     this.setState({ image: imageSrc });
   };
 
-  getData = () => {
-    const imageSrc = this.webcam.getScreenshot();
-    const imageBase64 = imageSrc.split(',')[1];
-    this.setState({ image: imageSrc });
-    axios
-      .post('http://127.0.0.1:5000/', { image: imageBase64 })
-      .then(res => console.log('res', res));
+  getData = async () => {
+    try {
+      const imageSrc = this.webcam.getScreenshot();
+      const imageBase64 = imageSrc.split(',')[1];
+      const data = await axios.post('http://159.65.201.192/', {
+        image: imageBase64
+      });
+      if (data.data !== 'Not recognized') {
+        this.props.history.push(`/product?id=${data.data}`);
+      }
+      console.log('BARCODE RESULT', data);
+    } catch (error) {
+      console.log('BARCODE READER ERROR: \n', error);
+    }
   };
 
   render() {
