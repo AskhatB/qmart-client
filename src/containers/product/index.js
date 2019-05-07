@@ -26,7 +26,7 @@ class Product extends React.Component {
 
   componentWillMount = () => {
     axios
-      .post("/product-by-barcode", { barcode: this.props.match.params.id })
+      .post("/product-by-barcode", { barcode: this.props.match.params.id, sup_id: 1 })
       .then(res => {
         this.setState({ product: res.data });
       });
@@ -100,11 +100,11 @@ class Product extends React.Component {
             </Button>
           </BuyingBlock>
         </Layout>
-        <Watched>
+        {/* <Watched>
           {products.map(val => (
             <ProductCardOne {...val} />
           ))}
-        </Watched>
+        </Watched> */}
       </Wrap>
     );
   }
