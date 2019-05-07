@@ -46,7 +46,7 @@ class Camera extends React.Component {
     const videoConstraints = {
       width: 1280,
       height: 720,
-      facingMode: 'user'
+      facingMode: 'environment'
     };
     // console.log("image", image)
     // setInterval(() => this.capture(), 1000)
@@ -57,6 +57,7 @@ class Camera extends React.Component {
         ref={this.setRef}
         screenshotFormat="image/jpeg"
         width={this.props.width}
+        screenshotQuality={1}
         videoConstraints={videoConstraints}
       />
     );
