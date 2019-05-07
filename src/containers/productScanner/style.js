@@ -13,6 +13,7 @@ export const ScannerWrap = styled.div`
   height: 165px;
   margin: 50px 10px;
   border: 4px solid #fff;
+  overflow: hidden;
 `;
 
 export const Text = styled.div`
