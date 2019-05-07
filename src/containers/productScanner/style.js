@@ -10,9 +10,7 @@ export const Wrap = styled.div`
 
 export const ScannerWrap = styled.div`
   position: relative;
-  height: 165px;
-  margin: 50px 10px;
-  border: 4px solid #fff;
+  height: 100vh;
   overflow: hidden;
 `;
 
