@@ -23,7 +23,7 @@ export const Text = styled.div`
 export const RedLine = styled.div`
   position: absolute;
   top: 50%;
-  transform: translate(-50%; 0);
+  transform: translate(0, -50%);
   background: red;
   opacity: 0.5;
   width: 100%;
