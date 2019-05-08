@@ -12,11 +12,11 @@ const Header = ({ title }) => {
         <BackIcon />
       </IconWrap>
       <Title>{title}</Title>
-      <Link to="/cart">
-        <Controls>
+      <Controls>
+        <Link to="/cart">
           <CartIcon width="24px" />
-        </Controls>
-      </Link>
+        </Link>
+      </Controls>
     </Wrap>
   );
 };

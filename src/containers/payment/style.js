@@ -22,5 +22,3 @@ export const Text = styled.div`
   font-size: 20px;
   font-family: 'Roboto Condensed',sans-serif;
 `;
-
-export const Total = styled.div``;
