@@ -12,9 +12,11 @@ export const Wrap = styled.button`
   padding: 0 15px;
   box-sizing: border-box;
   border: none;
-  border-radius: 20px;
+  border-radius: 7px;
   display: flex;
   align-items: center;
   ${props => props.jc === 'center' && 'justify-content: center'};
   margin-top: ${props => props.top || '0'};
+  margin-right: ${props => props.right || '0'};
+  margin-left: ${props => props.left || '0'};
 `;

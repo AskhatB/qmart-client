@@ -9,6 +9,8 @@ const Button = ({
   children,
   jc,
   top,
+  left,
+  right,
   onClick
 }) => {
   return (
@@ -19,6 +21,8 @@ const Button = ({
       fontColor={fontColor}
       jc={jc}
       top={top}
+      left={left}
+      right={right}
       onClick={() => onClick()}
     >
       {children}

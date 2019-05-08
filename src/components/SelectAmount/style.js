@@ -4,8 +4,8 @@ export const Wrap = styled.div`
   position: relative;
   background: #eee;
   width: max-content;
-  height: 30px;
-  border-radius: 20px;
+  height: 35px;
+  border-radius: 7px;
   border: 1px solid #ddd;
   padding: 0 35px;
   box-sizing: border-box;

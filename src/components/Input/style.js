@@ -4,7 +4,7 @@ export const InputWrap = styled.input`
   width: ${props => props.width};
   height: ${props => props.height};
   background: #eee;
-  border-radius: 20px;
+  border-radius: 7px;
   border: none;
   outline: none;
   margin-top: ${props => props.top};

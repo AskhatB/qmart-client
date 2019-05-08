@@ -19,13 +19,16 @@ export const Title = styled.div`
   font-size: 16px;
   width: 33%;
   text-align: center;
-  letter-spacing: .8px;
+  letter-spacing: 0.8px;
   color: #3e3e3e;
   font-weight: 600;
 `;
 
 export const Controls = styled.div`
   width: 33%;
+  margin-right: 10px;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 export const IconWrap = styled.div`

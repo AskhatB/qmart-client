@@ -1,8 +1,9 @@
 import React from 'react';
-import { Wrap, Layout } from './style';
+import { Wrap, Layout, Buy } from './style';
 import axios from 'axios';
 import Header from '../../components/Header';
 import ProductCardTwo from '../../components/ProductCardTwo';
+import { Link } from 'react-router-dom';
 
 const cart = JSON.parse(localStorage.getItem('_prodcutsInCart'));
 
@@ -16,14 +17,30 @@ class Cart extends React.Component {
     };
   }
 
+  totalPrice = () => {
+    let total = 0;
+    this.state.data.forEach(val => {
+      const current = cart.find(i => i.id === parseInt(val.barcode_id, 10))
+        .amount;
+      total += val.price * current;
+    });
+    this.setState({
+      total: total
+    });
+  };
+
   getProductList = () => {
     let cartIds = [];
     for (let i = 0; i < cart.length; i++) {
       cartIds.push(cart[i].id);
     }
-    axios.post('/product-list', { cartIds }).then(res => {
-      this.setState({ data: res.data, loading: false });
-    });
+    const partnerId = JSON.parse(localStorage.getItem('qmart::partner_id'));
+    axios
+      .post('/product-list', { cartIds, sup_id: partnerId.qmart_partner_id })
+      .then(res => {
+        this.setState({ data: res.data, loading: false });
+        this.totalPrice();
+      });
   };
 
   componentWillMount = () => {
@@ -39,7 +56,7 @@ class Cart extends React.Component {
   };
 
   render() {
-    const { loading, data } = this.state;
+    const { loading, data, total } = this.state;
     if (loading) return <div />;
     return (
       <Wrap>
@@ -52,13 +69,19 @@ class Cart extends React.Component {
                 index={indx}
                 name={val.name}
                 image={JSON.parse(val.images)[0]}
-                amount={cart.filter(i => i.id === val.id)[0].amount}
+                amount={
+                  cart.filter(i => i.id === parseInt(val.barcode_id, 10))[0]
+                    .amount
+                }
                 price={val.price}
                 removeFromCart={this.removeFromCart}
               />
             );
           })}
         </Layout>
+        <Link to={`/payment/${total}`}>
+          <Buy>Оплатить ({total}тг)</Buy>
+        </Link>
       </Wrap>
     );
   }

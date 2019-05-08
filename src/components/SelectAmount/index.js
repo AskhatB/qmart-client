@@ -5,7 +5,7 @@ const SelectAmount = ({ text, options, active, onChange }) => {
   return (
     <Wrap>
       <Text>{text}</Text>
-      <select onChange={onChange}>
+      {/* <select onChange={onChange}>
         {options.map(val => {
           return (
             <option key={val} value={val} defaultValue={active === val}>
@@ -13,7 +13,7 @@ const SelectAmount = ({ text, options, active, onChange }) => {
             </option>
           );
         })}
-      </select>
+      </select> */}
     </Wrap>
   );
 };

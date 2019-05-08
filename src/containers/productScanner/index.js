@@ -2,7 +2,6 @@ import React from 'react';
 import { Wrap, ScannerWrap, Text, RedLine } from './style';
 import Header from '../../components/Header';
 import Camera from '../../components/Camera';
-import BarcodeIcon from '../../icons/barcode';
 
 class ProductScanner extends React.Component {
   state = {
