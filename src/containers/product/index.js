@@ -27,13 +27,15 @@ class Product extends React.Component {
 
   cartStatus = () => {
     const cart = JSON.parse(localStorage.getItem('_prodcutsInCart'));
-    const isInCart = cart.find(
-      x => x.id === parseInt(this.props.match.params.id, 10)
-    );
-    if (isInCart) {
-      this.setState({
-        amount: isInCart.amount
-      });
+    if (cart) {
+      const isInCart = cart.find(
+        x => x.id === parseInt(this.props.match.params.id, 10)
+      );
+      if (isInCart) {
+        this.setState({
+          amount: isInCart.amount
+        });
+      }
     }
   };
 

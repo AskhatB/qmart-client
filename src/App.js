@@ -9,7 +9,7 @@ import Payment from './containers/payment';
 import Success from './containers/SuccessPayment';
 import axios from 'axios';
 import './App.css';
-axios.defaults.baseURL = 'https://qmart-api.unie.kz/';
+axios.defaults.baseURL = 'https://api.qmart.xyz/';
 class App extends Component {
   render() {
     return (
