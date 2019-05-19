@@ -29,7 +29,7 @@ class Camera extends React.Component {
     try {
       const imageSrc = this.webcam.getScreenshot();
       const imageBase64 = imageSrc.split(',')[1];
-      const data = await axios.post('https://qmart-scanner.unie.kz/', {
+      const data = await axios.post('https://scanner.qmart.xyz/', {
         image: imageBase64
       });
       if (data.data !== 'Not recognized') {
