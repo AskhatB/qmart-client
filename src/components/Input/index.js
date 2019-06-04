@@ -10,7 +10,8 @@ const Input = ({
   top,
   left,
   right,
-  bottom
+  bottom,
+  name
 }) => {
   return (
     <InputWrap
@@ -23,6 +24,7 @@ const Input = ({
       right={right}
       bottom={bottom}
       type={type}
+      name={name}
     />
   );
 };

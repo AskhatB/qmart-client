@@ -19,4 +19,5 @@ export const Wrap = styled.button`
   margin-top: ${props => props.top || '0'};
   margin-right: ${props => props.right || '0'};
   margin-left: ${props => props.left || '0'};
+  text-decoration: none;
 `;
