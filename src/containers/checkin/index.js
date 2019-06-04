@@ -18,7 +18,7 @@ class CheckIn extends React.Component {
       <Wrap>
         <Header />
         <QRReader onScan={this.scanHandle} />
-        <Description>Отсканируйте QR-код при входе магазина</Description>
+        <Description>Отсканируйте QR-код у входа в магазин</Description>
         <QrWhiteIcon width="50px" height="50px" />
       </Wrap>
     );

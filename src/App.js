@@ -9,6 +9,7 @@ import Payment from './containers/cloudpayments';
 import Success from './containers/SuccessPayment';
 import Registration from './containers/regisration';
 import Profile from './containers/profile';
+import BarcodeInput from './containers/barcodeInput';
 import axios from 'axios';
 import { history } from './history';
 import './App.css';
@@ -31,6 +32,7 @@ class App extends Component {
           <Route path="/success" component={Success} />
           <Route path="/registration" component={Registration} />
           <Route path="/profile" component={Profile} />
+          <Route path="/barcode-input" component={BarcodeInput} />
         </Switch>
       </div>
     );
