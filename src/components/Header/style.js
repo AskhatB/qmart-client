@@ -29,10 +29,15 @@ export const Controls = styled.div`
   margin-right: 10px;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 `;
 
 export const IconWrap = styled.div`
   width: 33%;
   display: flex;
   justify-content: flex-start;
+`;
+
+export const Separator = styled.div`
+width: 15px;
 `;

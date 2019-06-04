@@ -5,9 +5,10 @@ import ProductScanner from './containers/productScanner';
 import Product from './containers/product';
 import CheckIn from './containers/checkin';
 import Cart from './containers/cart';
-import Payment from './containers/clodudpayments';
+import Payment from './containers/cloudpayments';
 import Success from './containers/SuccessPayment';
 import Registration from './containers/regisration';
+import Profile from './containers/profile';
 import axios from 'axios';
 import { history } from './history';
 import './App.css';
@@ -29,6 +30,7 @@ class App extends Component {
           <Route path="/payment/:amount" component={Payment} />
           <Route path="/success" component={Success} />
           <Route path="/registration" component={Registration} />
+          <Route path="/profile" component={Profile} />
         </Switch>
       </div>
     );

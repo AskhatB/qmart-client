@@ -1,7 +1,8 @@
 import React from 'react';
-import { Wrap, Title, Controls, IconWrap } from './style';
+import { Wrap, Title, Controls, IconWrap, Separator } from './style';
 import BackIcon from '../../icons/back';
 import CartIcon from '../../icons/cart';
+import ProfileIcon from '../../icons/profile';
 import { history } from '../../history';
 import { Link } from 'react-router-dom';
 
@@ -13,9 +14,17 @@ const Header = ({ title }) => {
       </IconWrap>
       <Title>{title}</Title>
       <Controls>
-        <Link to="/cart">
-          <CartIcon width="24px" />
-        </Link>
+        {title !== 'Профиль' && (
+          <>
+            <Link to="/cart">
+              <CartIcon width="24px" />
+            </Link>
+            <Separator />
+            <Link to="/profile">
+              <ProfileIcon />
+            </Link>
+          </>
+        )}
       </Controls>
     </Wrap>
   );
