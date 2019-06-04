@@ -16,9 +16,9 @@ const Header = ({ title }) => {
       <Controls>
         {title !== 'Профиль' && (
           <>
-            <Link to="/cart">
+            <a href="/cart">
               <CartIcon width="24px" />
-            </Link>
+            </a>
             <Separator />
             <Link to="/profile">
               <ProfileIcon />

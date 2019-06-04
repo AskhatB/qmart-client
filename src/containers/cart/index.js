@@ -8,14 +8,12 @@ import { Link } from 'react-router-dom';
 const cart = JSON.parse(localStorage.getItem('_prodcutsInCart'));
 
 class Cart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: null,
-      loading: true,
-      cartItems: cart
-    };
-  }
+  state = {
+    data: null,
+    loading: true,
+    cartItems: cart,
+    forceUpdate: false
+  };
 
   totalPrice = () => {
     let total = 0;
@@ -30,21 +28,32 @@ class Cart extends React.Component {
   };
 
   getProductList = () => {
-    let cartIds = [];
-    for (let i = 0; i < cart.length; i++) {
-      cartIds.push(cart[i].id);
+    if (cart) {
+      let cartIds = [];
+      for (let i = 0; i < cart.length; i++) {
+        cartIds.push(cart[i].id);
+      }
+      const partnerId = JSON.parse(localStorage.getItem('qmart::partner_id'));
+      axios
+        .post('/product-list', { cartIds, sup_id: partnerId.qmart_partner_id })
+        .then(res => {
+          this.setState({ data: res.data, loading: false });
+          this.totalPrice();
+        })
+        .catch(error => {
+          this.setState({ loading: false, empty: true });
+        });
+    } else {
+      this.setState({ loading: false, empty: true });
     }
-    const partnerId = JSON.parse(localStorage.getItem('qmart::partner_id'));
-    axios
-      .post('/product-list', { cartIds, sup_id: partnerId.qmart_partner_id })
-      .then(res => {
-        this.setState({ data: res.data, loading: false });
-        this.totalPrice();
-      });
   };
 
   componentWillMount = () => {
     this.getProductList();
+  };
+
+  componentDidMount = () => {
+    this.setState({ forceUpdate: !this.state.forceUpdate });
   };
 
   removeFromCart = index => {
@@ -61,27 +70,33 @@ class Cart extends React.Component {
     return (
       <Wrap>
         <Header title="Корзина" />
-        <Layout>
-          {data.map((val, indx) => {
-            return (
-              <ProductCardTwo
-                key={val.id}
-                index={indx}
-                name={val.name}
-                image={JSON.parse(val.images)[0]}
-                amount={
-                  cart.filter(i => i.id === parseInt(val.barcode_id, 10))[0]
-                    .amount
-                }
-                price={val.price}
-                removeFromCart={this.removeFromCart}
-              />
-            );
-          })}
-        </Layout>
-        <Link to={`/payment/${total}`}>
-          <Buy>Оплатить ({total}тг)</Buy>
-        </Link>
+        {this.state.empty ? (
+          <div>Пусто</div>
+        ) : (
+          <>
+            <Layout>
+              {data.map((val, indx) => {
+                return (
+                  <ProductCardTwo
+                    key={val.id}
+                    index={indx}
+                    name={val.name}
+                    image={JSON.parse(val.images)[0]}
+                    amount={
+                      cart.filter(i => i.id === parseInt(val.barcode_id, 10))[0]
+                        .amount
+                    }
+                    price={val.price}
+                    removeFromCart={this.removeFromCart}
+                  />
+                );
+              })}
+            </Layout>
+            <Link to={`/payment/${total}`}>
+              <Buy>Оплатить ({total}тг)</Buy>
+            </Link>
+          </>
+        )}
       </Wrap>
     );
   }

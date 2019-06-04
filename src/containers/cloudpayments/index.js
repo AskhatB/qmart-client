@@ -37,6 +37,7 @@ class CloudPayments extends React.Component {
         }
       },
       options => {
+        localStorage.removeItem('_prodcutsInCart');
         window.location = '/success';
       }
     );

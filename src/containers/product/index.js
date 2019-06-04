@@ -18,7 +18,7 @@ import ProductCardOne from '../../components/ProductCardOne';
 import { products } from './data';
 class Product extends React.Component {
   state = {
-    amount: 1,
+    amount: 0,
     product: null,
     loadingProduct: true,
     loadingOffer: true,
