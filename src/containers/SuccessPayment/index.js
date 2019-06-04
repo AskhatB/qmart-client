@@ -26,6 +26,7 @@ class SuccessPayment extends React.Component {
             left="auto"
             right="auto"
             top="10px"
+            onClick={() => console.log('next')}
           >
             Вернуться к сканированию
           </Button>

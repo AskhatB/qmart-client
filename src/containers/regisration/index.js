@@ -38,7 +38,7 @@ class Registration extends Component {
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to="/" />;
+      return <Redirect to="/auth" />;
     }
     return (
       <Wrap>

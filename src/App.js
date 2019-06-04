@@ -5,7 +5,7 @@ import ProductScanner from './containers/productScanner';
 import Product from './containers/product';
 import CheckIn from './containers/checkin';
 import Cart from './containers/cart';
-import Payment from './containers/payment';
+import Payment from './containers/clodudpayments';
 import Success from './containers/SuccessPayment';
 import Registration from './containers/regisration';
 import axios from 'axios';
