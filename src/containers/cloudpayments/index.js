@@ -26,7 +26,7 @@ class CloudPayments extends React.Component {
     widget.auth(
       {
         publicId: 'pk_13c33481c8dfd6c79b0c3258177b1', // id из личного кабинета
-        description: 'Оплата в 2step.me', // назначение
+        description: 'Оплата в QMart', // назначение
         amount: parseInt(amount, 10), // сумма
         currency: 'KZT', // валюта
         invoiceId: 1, // номер заказа  (необязательно)
