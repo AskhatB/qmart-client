@@ -9,9 +9,18 @@ import { Link } from 'react-router-dom';
 const Header = ({ title }) => {
   return (
     <Wrap>
-      <IconWrap onClick={() => history.goBack()}>
-        <BackIcon />
-      </IconWrap>
+      {title === 'Товар' ? (
+        <Link to="/product-scanner" style={{ display: 'block', width: '72px' }}>
+          <IconWrap>
+            <BackIcon />
+          </IconWrap>
+        </Link>
+      ) : (
+        <IconWrap onClick={() => history.goBack()}>
+          <BackIcon />
+        </IconWrap>
+      )}
+
       <Title>{title}</Title>
       <Controls>
         {title !== 'Профиль' && (
